@@ -31,9 +31,9 @@ public class LevelButtonController : MonoBehaviour {
         Transform star2 = transform.Find("StarsCollected/Star2");
         Transform star3 = transform.Find("StarsCollected/Star3");
 
-        if (level.Stars < 1) star1.gameObject.GetComponent<Image>().enabled = false;
-        if (level.Stars < 2) star2.gameObject.GetComponent<Image>().enabled = false;
-        if (level.Stars < 3) star3.gameObject.GetComponent<Image>().enabled = false;
+        star1.gameObject.GetComponent<Image>().enabled = (level.Stars & Level.MaskStar1) == Level.MaskStar1;
+        star2.gameObject.GetComponent<Image>().enabled = (level.Stars & Level.MaskStar2) == Level.MaskStar2;
+        star3.gameObject.GetComponent<Image>().enabled = (level.Stars & Level.MaskStar3) == Level.MaskStar3;
     }
 
     public void OnClick() {

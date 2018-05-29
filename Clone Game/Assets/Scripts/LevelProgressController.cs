@@ -53,6 +53,10 @@ public class LevelProgressController : MonoBehaviour {
             LevelCompleted();
         }
     }
+
+    public void StarCollected() {
+        collectableStar = true;
+    }
    
     public void LevelCompleted() {
         progressTextAnim.SetTrigger("Completed");
@@ -64,13 +68,16 @@ public class LevelProgressController : MonoBehaviour {
         if (Time.fixedDeltaTime * controller.GetCurrentFrame() <= starTime)
             timeStar = true;
 
-        int nbStars = 0;
-        if (completedStar) nbStars++;
-        if (timeStar) nbStars++;
-        if (collectableStar) nbStars++;
+        int stars = 0;
+        if (completedStar)
+            stars |= 4;
+        if (timeStar)
+            stars |= 2;
+        if (collectableStar)
+            stars |= 1;
 
         Level level = ProgressData.GetInstance().GetLevelBySceneName(SceneManager.GetActiveScene().name);
-        level.Complete(nbStars);
+        level.Complete(stars);
         ProgressData.GetInstance().SaveProgress();
 
         GameObject star1 = GameObject.Find("Star1");

@@ -19,6 +19,6 @@ public class LevelButtonPopulator : MonoBehaviour {
             button.GetComponent<LevelButtonController>().SetLevel(data.GetLevel(i));
             button.transform.SetParent(buttonParent, false);
         }
-	}
+    }
 	
 }

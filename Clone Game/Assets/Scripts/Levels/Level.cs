@@ -4,6 +4,10 @@ using UnityEngine;
 
 [System.Serializable]
 public class Level {
+    public static int MaskStar1 = 1;
+    public static int MaskStar2 = 1 << 1;
+    public static int MaskStar3 = 1 << 2;
+
     private static int[] RequiredStars = {
         0, 1, 3,
         6, 9, 13
@@ -39,8 +43,7 @@ public class Level {
     }
 
     public void Complete(int stars) {
-        if(stars > this.Stars)
-            this.Stars = stars;
+        this.Stars |= stars;
         Completed = true;
     }
 
